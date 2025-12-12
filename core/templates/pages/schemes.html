@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Schemes & News | AgroSmart{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-4">Government Schemes & Agri News</h1>
+
+{% if items and items.0.cols %}
+  <table class="w-full">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="text-left p-2">Serial</th>
+        <th class="text-left p-2">Department</th>
+        <th class="text-left p-2">Scheme</th>
+        <th class="text-left p-2">Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for it in items %}
+        <tr class="border-t">
+          <td class="p-2">{{ it.cols.0 }}</td>
+          <td class="p-2">{{ it.cols.1 }}</td>
+          <td class="p-2">
+            {% if it.url %}
+              <a href="{{ it.url }}" target="_blank" rel="noopener" class="hover:underline">{{ it.cols.2 }}</a>
+            {% else %}
+              {{ it.cols.2 }}
+            {% endif %}
+          </td>
+          <td class="p-2">
+            {% if it.url %}
+              <a href="{{ it.url }}" target="_blank" rel="noopener" class="text-blue-600 hover:underline">Open</a>
+            {% else %}
+              —
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <div class="border rounded">
+    <ul>
+      {% for it in items %}
+        <li class="border-t first:border-t-0">
+          <a class="block p-3 hover:underline" href="{{ it.url }}" target="_blank" rel="noopener">{{ it.title }}</a>
+        </li>
+      {% empty %}
+        <li class="p-3 text-gray-500">No items available</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+{% endblock %}

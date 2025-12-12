@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Home | AgroSmart{% endblock %}
+{% block page_shell_class %}max-w-6xl mx-auto p-0 md:p-0 bg-transparent{% endblock %}
+{% block content %}
+<section class="agri-hero rounded-2xl p-8 md:p-10 text-center text-emerald-950 fade-in">
+  <div class="inline-flex items-center gap-2 bg-white/70 text-emerald-900 px-3 py-1 rounded-full text-sm mb-4 hero-badge">
+    <i class="ri-plant-line"></i>
+    Smarter decisions for every season
+  </div>
+  <h1 class="font-semibold leading-tight max-w-3xl mx-auto">
+    Grow smarter with data‑driven agriculture
+  </h1>
+  <p class="text-emerald-900/80 mt-3 max-w-3xl mx-auto">
+    Get crop recommendations, live market insights, and rainfall trends powered by Gujarat datasets.
+  </p>
+  <div class="mt-6 flex flex-wrap justify-center gap-3">
+    <a href="/crop-suggestion/" class="btn btn-primary">
+      <i class="ri-seedling-line icon"></i>
+      Get Crop Suggestion
+    </a>
+    <a href="/market-data/" class="btn btn-accent">
+      <i class="ri-store-2-line icon"></i>
+      View Market Data
+    </a>
+  </div>
+</section>
+
+<section class="mt-8">
+  <div class="grid md:grid-cols-3 gap-4">
+    <a href="/crop-suggestion/" class="card p-5 block hover:no-underline">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="agri-dot"></span>
+        <h3 class="font-semibold">Crop Suggestions</h3>
+      </div>
+      <p class="text-gray-700">Personalized crop choices based on soil, weather, and region.</p>
+    </a>
+    <a href="/market-data/" class="card p-5 block hover:no-underline">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="agri-dot"></span>
+        <h3 class="font-semibold">Market Prices</h3>
+      </div>
+      <p class="text-gray-700">Track commodity prices and plan sales for better margins.</p>
+    </a>
+    <a href="/schemes/" class="card p-5 block hover:no-underline">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="agri-dot"></span>
+        <h3 class="font-semibold">Govt. Schemes</h3>
+      </div>
+      <p class="text-gray-700">Discover agriculture schemes and benefits you can apply for.</p>
+    </a>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-4 mt-4">
+    <a href="/admin-dashboard/" class="card p-5 block hover:no-underline">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="agri-dot"></span>
+        <h3 class="font-semibold">Admin Dashboard</h3>
+      </div>
+      <p class="text-gray-700">Operational overview, analytics, and data downloads.</p>
+    </a>
+    <a href="/contact/" class="card p-5 block hover:no-underline">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="agri-dot"></span>
+        <h3 class="font-semibold">Contact</h3>
+      </div>
+      <p class="text-gray-700">Questions or feedback? We would love to hear from you.</p>
+    </a>
+  </div>
+</section>
+
+<section class="mt-8 card p-5 bg-white/80">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div>
+      <h3 class="font-semibold">Data you can trust</h3>
+      <p class="text-gray-700">Market prices and rainfall insights are integrated from Gujarat CSV datasets.</p>
+    </div>
+    <a href="/market-data/" class="btn btn-primary"><i class="ri-bar-chart-2-line icon"></i> Explore Data</a>
+  </div>
+</section>
+{% endblock %}

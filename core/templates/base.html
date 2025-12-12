@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}AgroSmart{% endblock %}</title>
+  <!-- Google Font: PT Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#6FAF6F',
+            accent: '#6FB3D1',
+            soft: '#F0FFF0',
+          },
+          fontFamily: {
+            sans: ['PT Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <!-- Theme variables and animations -->
+  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+  <!-- Icons (Remix Icon - lightweight) -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body class="min-h-screen flex flex-col bg-soft transition-colors font-sans">
+  {% include 'partials/navbar.html' %}
+
+  <main class="flex-1 container mx-auto px-4 py-6">
+    {% if messages and not suppress_global_messages %}
+      <div class="mb-4">
+        {% for message in messages %}
+          <div class="p-3 rounded mb-2 {% if message.tags == 'error' %}bg-red-50 text-red-800 border border-red-200{% elif message.tags == 'success' %}bg-green-50 text-green-800 border border-green-200{% else %}bg-blue-50 text-blue-800 border border-blue-200{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="{% block page_shell_class %}max-w-6xl mx-auto card p-6 md:p-8{% endblock %}">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  {% include 'partials/footer.html' %}
+</body>
+</html>

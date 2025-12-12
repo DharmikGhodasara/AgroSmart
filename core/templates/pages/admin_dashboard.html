@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard | AgroSmart{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-semibold mb-4 flex items-center gap-2"><i class="ri-settings-3-line icon text-[var(--color-primary)]"></i> Admin Dashboard</h1>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+  <div class="card p-4 fade-in">
+    <h2 class="font-semibold mb-2">Upload Dataset (CSV)</h2>
+    <form method="post" enctype="multipart/form-data" class="space-y-2">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="upload_dataset" />
+      <input type="file" name="dataset" accept=".csv" class="block w-full" />
+      <button class="btn btn-accent" type="submit"><i class="ri-upload-2-line icon"></i> Upload</button>
+    </form>
+    <p class="text-xs text-gray-500 mt-2">Expected columns: soil_type, season, rainfall_level, crop</p>
+  </div>
+
+  <div class="card p-4 fade-in">
+    <h2 class="font-semibold mb-2">Retrain Model</h2>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="retrain_model" />
+      <button class="btn btn-primary" type="submit"><i class="ri-cpu-line icon"></i> Retrain Now</button>
+    </form>
+    <p class="text-xs text-gray-500 mt-2">Uses the current dataset to train and save model & label encoder.</p>
+  </div>
+
+  <div class="card p-4 fade-in">
+    <h2 class="font-semibold mb-2">Quick Links</h2>
+    <ul class="list-disc list-inside text-blue-700">
+      <li><a class="inline-flex items-center gap-2" href="/schemes/"><i class="ri-newspaper-line icon"></i> Schemes & News</a></li>
+      <li><a class="inline-flex items-center gap-2" href="/admin-dashboard/download-insights.csv"><i class="ri-download-2-line icon"></i> Download Insights (CSV)</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div class="card p-4 fade-in">
+    <h3 class="font-semibold mb-2"> Rainfall Information</h3>
+    {% if rainfall_bar_b64 %}
+      <img src="data:image/png;base64,{{ rainfall_bar_b64 }}" alt="Region vs Rainfall" class="w-full" />
+    {% else %}
+      <p class="text-gray-500">No chart available.</p>
+    {% endif %}
+  </div>
+  <div class="card p-4 fade-in">
+    <h3 class="font-semibold mb-2">Commodity vs Price (Gujarat CSV)</h3>
+    {% if prices_bar_b64 %}
+      <img src="data:image/png;base64,{{ prices_bar_b64 }}" alt="Commodity vs Price" class="w-full" />
+    {% else %}
+      <p class="text-gray-500">No chart available.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

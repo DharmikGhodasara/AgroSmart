@@ -1,0 +1,10 @@
+soil_type,season,rainfall_level,crop
+clay,winter,low,wheat
+sandy,summer,low,pearl millet
+loamy,monsoon,high,rice
+silt,monsoon,medium,maize
+peat,winter,high,potato
+chalk,summer,low,barley
+loamy,summer,medium,corn
+clay,monsoon,high,paddy
+
